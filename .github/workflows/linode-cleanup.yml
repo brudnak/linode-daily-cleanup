@@ -1,4 +1,4 @@
-name: Test Linode cli
+name: Daily Linode Cleanup
 on:
   schedule:
     - cron: "0 20 * * *"
@@ -12,5 +12,8 @@ jobs:
         uses: brendon1555/setup-linode-cli@master
         with:
           LINODE_CLI_TOKEN: ${{ secrets.LINODE_CLI_TOKEN }}
-      - run: linode-cli linodes list --text |  awk '(NR>1)' | awk  '{print $1}' > linode-ids-delete.txt
-      - run: while read in; do; linode-cli linodes delete "$in"; done < linode-ids-delete.txt
+      - run:
+          linode-cli linodes list --text |  awk '(NR>1)' | awk  '{print $1}' > linode-ids-delete.txt
+          while read in; do
+            linode-cli linodes delete "$in"
+          done < linode-ids-delete.txt

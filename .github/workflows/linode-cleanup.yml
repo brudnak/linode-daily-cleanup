@@ -1,0 +1,15 @@
+name: Test Linode cli
+on:
+  schedule:
+    - cron:  '0 20 * * *'
+jobs:
+  job-name:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Linode cli
+        uses: brendon1555/setup-linode-cli@master
+        with:
+          LINODE_CLI_TOKEN: ${{ secrets.LINODE_CLI_TOKEN }}
+      - run: linode-cli linodes list --text |  awk '(NR>1)' | awk  '{print $1}' > linode-ids-delete.txt
+      - run: while read in; do; linode-cli linodes delete "$in"; done < linode-ids-delete.txt

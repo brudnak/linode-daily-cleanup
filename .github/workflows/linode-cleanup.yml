@@ -14,6 +14,6 @@ jobs:
           LINODE_CLI_TOKEN: ${{ secrets.LINODE_CLI_TOKEN }}
       - run:
           linode-cli linodes list --text |  awk '(NR>1)' | awk  '{print $1}' > linode-ids-delete.txt
-          while read in; do
+          while read in do
             linode-cli linodes delete "$in"
           done < linode-ids-delete.txt

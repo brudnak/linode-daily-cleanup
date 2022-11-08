@@ -1,7 +1,8 @@
 name: Test Linode cli
 on:
   schedule:
-    - cron:  '0 20 * * *'
+    - cron: "0 20 * * *"
+  workflow_dispatch:
 jobs:
   job-name:
     runs-on: ubuntu-latest

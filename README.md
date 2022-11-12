@@ -6,4 +6,4 @@ A helpful cron time tool incase you want to adjust the timing: https://crontab.g
 
 This can be manually run via the GitHub UI as well.
 
-This only delete Linodes in with the tag `github-action-delete`
+This only delete Linodes with the tag `github-action-delete`

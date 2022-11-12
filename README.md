@@ -1,19 +1,9 @@
-# 💚 Daily Linode cleanup
+# Daily Linode cleanup
 
->🚨 WARNING: Don't run this action if you're a Linode Administrator. It deletes all Linodes that your account has access to / can see.
-
-Just a simple GitHub action that runs daily at 8:00PM to delete all of the Linodes associated with your account.
-
-Runs daily at 8:00PM thanks to this section in the workflow:
-
-```yml
-- cron: "0 20 * * *"
-```
+Just a simple GitHub action that runs daily at 22:00 to delete all of the Linodes associated with your account with a specific tag.
 
 A helpful cron time tool incase you want to adjust the timing: https://crontab.guru/
 
-This can be manually run via the UI thanks to:
+This can be manually run via the GitHub UI as well.
 
-```yml
-workflow_dispatch:
-```
+This only delete Linodes in with the tag `github-action-delete`

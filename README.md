@@ -1,6 +1,6 @@
 # Daily Linode cleanup
 
-Just a simple GitHub action that runs daily at 24:00 to delete all of the Linodes associated with your account with a specific tag.
+Just a simple GitHub action that runs daily at 23:00 to delete all of the Linodes associated with your account with a specific tag.
 
 A helpful cron time tool incase you want to adjust the timing: https://crontab.guru/
 

@@ -1,7 +1,7 @@
 name: Daily Linode Cleanup
 on:
   schedule:
-    - cron: "0 22 * * *"
+    - cron: "0 24 * * *"
   workflow_dispatch:
 jobs:
   job-name:
@@ -12,5 +12,5 @@ jobs:
         uses: brendon1555/setup-linode-cli@master
         with:
           LINODE_CLI_TOKEN: ${{ secrets.LINODE_CLI_TOKEN }}
-      - run: linode-cli linodes list --tags github-action-delete  --text |  awk '(NR>1)' | awk  '{print $1}' > linode-ids-delete.txt
+      - run: linode-cli linodes list --tags ${{ secrets.DELETE_TAG }}  --text |  awk '(NR>1)' | awk  '{print $1}' > linode-ids-delete.txt
       - run: ./delete.sh

@@ -1,6 +1,10 @@
 # Daily Linode cleanup
 
-Just a simple GitHub action that runs every 6 hours `0 */6 * * *` to delete all of the Linodes associated with your account with a specific tag.
+Just a simple GitHub action that runs every 24 hours `0 */24 * * *` to delete all of the Linode instances associated with your account with a specific tag.
+
+The benefit of this running is that it's a GitHub action. So you don't need your local machine on/running at all.
+
+If you run this as a public repository it's also free. GitHub actions are free for public repositories.
 
 A helpful cron time tool incase you want to adjust the timing: https://crontab.guru/
 

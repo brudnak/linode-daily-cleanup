@@ -15,3 +15,6 @@ To make this work as a GitHub action create two GitHub action secrets with the r
 1. `LINODE_CLI_TOKEN`
 2. `DELETE_TAG`
     - Then name all of your Linode instances with whatever tag you provide to be deleted
+
+# README Update
+>Section to update to keep the GitHub actions running. Updated 11/27/2023.

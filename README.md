@@ -1,6 +1,6 @@
 # Daily Linode cleanup
 
-Just a simple GitHub action that runs every 12 hours `0 */12 * * *` to delete all the Linode instances associated with your account with a specific tag.
+Just a simple GitHub action that runs every 8 hours `0 */8 * * *` to delete all the Linode instances associated with your account with a specific tag.
 
 The benefit of this running is that it's a GitHub action. So you don't need your local machine on/running at all.
 
@@ -17,4 +17,4 @@ To make this work as a GitHub action create two GitHub action secrets with the r
     - Then name all of your Linode instances with whatever tag you provide to be deleted
 
 # README Update
->Section to update to keep the GitHub actions running. Updated 11/27/2023.
+>Section to update to keep the GitHub actions running. Updated June 9th 2024.

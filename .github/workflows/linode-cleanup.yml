@@ -1,8 +1,8 @@
 name: Daily Linode Cleanup
 on:
   schedule:
-    # runs every 12 hours
-    - cron: "0 */12 * * *"
+    # runs every 8 hours
+    - cron: "0 */8 * * *"
   workflow_dispatch:
 jobs:
   job-name:

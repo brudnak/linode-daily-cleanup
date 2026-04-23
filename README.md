@@ -1,20 +1,26 @@
-# Daily Linode cleanup
+# Linode Daily Cleanup
 
-Just a simple GitHub action that runs every 8 hours `0 */8 * * *` to delete all the Linode instances associated with your account with a specific tag.
+A GitHub Action that runs every 12 hours (`0 */12 * * *`) to delete Linode instances whose name contains `atb`.
 
-The benefit of this running is that it's a GitHub action. So you don't need your local machine on/running at all.
+This is designed to clean up downstream clusters created by Rancher in Linode — since Rancher-provisioned nodes can't have custom tags applied, deletion is done by label name instead.
 
-If you run this as a public repository it's also free. GitHub's actions are free for public repositories.
+The action runs on GitHub's infrastructure so your local machine doesn't need to be on.
 
-A helpful cron time tool incase you want to adjust the timing: https://crontab.guru/
+Public repositories get free GitHub Actions minutes.
 
-This can be manually run via the GitHub UI as well.
+Adjust the schedule at [crontab.guru](https://crontab.guru/) if needed. Can also be triggered manually from the GitHub Actions UI.
 
-To make this work as a GitHub action create two GitHub action secrets with the repository
+## Setup
 
-1. `LINODE_CLI_TOKEN`
-2. `DELETE_TAG`
-    - Then name all of your Linode instances with whatever tag you provide to be deleted
+Create two GitHub Actions secrets in the repository:
 
-# README Update
->Section to update to keep the GitHub actions running. Updated June 9th 2024.
+| Secret | Description |
+|---|---|
+| `LINODE_CLI_TOKEN` | Your Linode personal access token with read/write Linodes scope |
+| `USER_INITIALS` | Your initials (e.g. `atb`) — any Linode whose name contains this string will be deleted |
+
+The match is case-insensitive and substring-based, so it covers all positions and combinations — `atb-cluster`, `dev-atb-01`, `atbdsc`, `dscatb12`, etc. are all matched if your initials are `atb`.
+
+## Keep Actions Active
+
+> Updated April 2026 — GitHub disables scheduled workflows on inactive public repos after 60 days. Update this section periodically to keep the action running.

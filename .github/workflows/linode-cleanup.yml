@@ -1,23 +1,21 @@
 name: Daily Linode Cleanup
 on:
   schedule:
-    # runs every 8 hours
-    - cron: "0 */8 * * *"
+    # runs every 12 hours
+    - cron: "0 */12 * * *"
   workflow_dispatch:
 jobs:
   job-name:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # It's better to use a specific version than master
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - name: Install the Linode CLI
-        uses: linode/action-linode-cli@v1
+        uses: linode/action-linode-cli@e8752ed165037e5fa726df38db787e74bb745237 # v1.1.0
         with:
           token: ${{ secrets.LINODE_CLI_TOKEN }}
-          # You can specify a version if needed, otherwise, it will use the latest.
-          # version: 5.35.0
-          # setup-python: true # This is the default value.
-          # upgrade: true # This is the default value.
       - name: List Linodes to Delete
-        run: linode-cli linodes list --tags ${{ secrets.DELETE_TAG }} --text | awk '(NR>1)' | awk '{print $1}' > linode-ids-delete.txt
+        env:
+          USER_INITIALS: ${{ secrets.USER_INITIALS }}
+        run: linode-cli linodes list --text | awk -v initials="${USER_INITIALS}" 'NR>1 && tolower($2) ~ tolower(initials) {print $1}' > linode-ids-delete.txt
       - name: Delete Linodes
-        run: ./delete.sh
+        run: while read id; do linode-cli linodes delete "$id"; done < linode-ids-delete.txt

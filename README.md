@@ -1,6 +1,6 @@
 # Linode Daily Cleanup
 
-A GitHub Action that runs every 12 hours (`0 */12 * * *`) to delete Linode instances whose name contains `atb`.
+A GitHub Action that runs every 12 hours (`0 */12 * * *`) to delete Linode instances whose name contains a configurable string (e.g. your initials).
 
 This is designed to clean up downstream clusters created by Rancher in Linode — since Rancher-provisioned nodes can't have custom tags applied, deletion is done by label name instead.
 
@@ -17,9 +17,9 @@ Create two GitHub Actions secrets in the repository:
 | Secret | Description |
 |---|---|
 | `LINODE_CLI_TOKEN` | Your Linode personal access token with read/write Linodes scope |
-| `USER_INITIALS` | Your initials (e.g. `atb`) — any Linode whose name contains this string will be deleted |
+| `USER_INITIALS` | Your initials or identifier (e.g. `xyz`) — any Linode whose name contains this string will be deleted |
 
-The match is case-insensitive and substring-based, so it covers all positions and combinations — `atb-cluster`, `dev-atb-01`, `atbdsc`, `dscatb12`, etc. are all matched if your initials are `atb`.
+The match is case-insensitive and substring-based, so it covers all positions and combinations — `xyz-cluster`, `dev-xyz-01`, `xyznode`, etc. are all matched if your identifier is `xyz`.
 
 ## Keep Actions Active
 

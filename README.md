@@ -1,6 +1,6 @@
 # Linode Daily Cleanup
 
-A GitHub Action that runs every 12 hours (`0 */12 * * *`) to delete Linode instances whose name contains a configurable string (e.g. your initials).
+A GitHub Action that runs daily at 2am EST (`0 7 * * *` UTC) to delete Linode instances whose name contains a configurable string (e.g. your initials).
 
 This is designed to clean up downstream clusters created by Rancher in Linode — since Rancher-provisioned nodes can't have custom tags applied, deletion is done by label name instead.
 

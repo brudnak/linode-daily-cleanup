@@ -1,8 +1,8 @@
 name: Daily Linode Cleanup
 on:
   schedule:
-    # runs every 12 hours
-    - cron: "0 */12 * * *"
+    # 07:00 UTC = 02:00 EST (GitHub Actions cron is UTC; during EDT this fires at 03:00 local)
+    - cron: "0 7 * * *"
   workflow_dispatch:
 jobs:
   job-name:
